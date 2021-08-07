@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>userList</title>
+    <link rel="stylesheet" th:href="@{/bootstrap.css}"></link>
+</head>
+<body class="container">
+<br/>
+<h1>商品列表</h1>
+<br/><br/>
+<div class="with:80%">
+    <table class="table table-hover">
+        <thead>
+        <tr>
+            <th>#</th>
+            <th>商品名称</th>
+            <th>商品价格</th>
+            <th>编辑</th>
+            <th>删除</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr  th:each="product : ${pageInfo.getContent()}">
+            <th scope="row" th:text="${product.productId}"></th>
+            <td th:text="${product.productName}"></td>
+            <td th:text="${product.productPrice}"></td>
+            <td><a th:href="@{/toEdit(id=${product.productId})}">编辑</a></td>
+            <td><a th:href="@{/delete(id=${product.productId})}">删除</a></td>
+        </tr>
+
+        <tr>
+            <td colspan="8">
+                <div class="pagelist">
+                    <p>当前<span th:text="${pageInfo.getNumber()} + 1"></span>页,总<span th:text="${pageInfo.totalPages}"></span>页
+                        　　　　　　　　　　　　　　　　　共<span th:text="${pageInfo.totalElements}"></span>条记录
+                        <a th:href="@{/}">首页</a>
+                        <a th:href="@{/(pageNum = ${pageInfo.hasPrevious()} ? ${pageInfo.getNumber() } : 1)}">上一页</a>
+                        <a th:href="@{/(pageNum = ${pageInfo.hasNext()} ? ${pageInfo.getNumber()} + 2 : ${pageInfo.totalPages})}">下一页</a>
+                        <a th:href="@{/(pageNum = ${pageInfo.totalPages})}">尾页</a></p>
+                </div>
+
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+<div class="form-group">
+    <div class="col-sm-2 control-label">
+        <a href="/toAdd" th:href="@{/toAdd}" class="btn btn-info">添加商品</a>
+    </div>
+</div>
+<div class="form-group">
+    <div class="col-sm-2 control-label">
+        <a href="/toSearch" th:href="@{/toSearch}" class="btn btn-info">搜素商品</a>
+    </div>
+</div>
+
+</body>
+</html>

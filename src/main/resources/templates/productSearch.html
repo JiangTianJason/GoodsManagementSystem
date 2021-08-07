@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" th:href="@{/bootstrap.css}"></link>
+</head>
+<body>
+<form action="/search" method="post">
+  商品名称：<input type="text" name="productName">
+    <input type="submit" value="搜索">
+
+    <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-10">
+            <a href="/" th:href="@{/}" class="btn btn-info">返回主页</a>
+        </div>
+    </div>
+
+</form>
+</body>
+</html>
